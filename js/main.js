@@ -64,7 +64,6 @@ function CorrectHorseBatteryStaple() {
 	 * @param	{Mixed}  value
 	 */
 	this.setOption = function(key, value) {
-		console.log("setting config", key, value);
 		this.options[key] = value;
 
 		if (this.options.saveOptions === true) {
@@ -97,8 +96,6 @@ function CorrectHorseBatteryStaple() {
 	 */
 	this.setUIOption = function(key, value) {
 		var $el = $("[data-option='"+key+"']");
-
-		console.log("Setting UI option", key, value );
 
 		if ($el.is("input[type=checkbox]")) {
 			$el.prop("checked", value);
@@ -228,7 +225,6 @@ function CorrectHorseBatteryStaple() {
 
 		this.getRandomWords( numWords );
 
-		console.log(numWords, this.words);
 		//generate a full string to test against min length
 		fullword = this.words.join( this.options.separator.substring(0,1)||"" );
 
