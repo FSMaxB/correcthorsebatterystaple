@@ -26,8 +26,6 @@ function CorrectHorseBatteryStaple() {
 
 	this.words = [];
 
-	this.passwordString = "";
-
 	// UI references
 	this.ui = {
 		$passwordBox: $("#txt"),
@@ -204,7 +202,6 @@ function CorrectHorseBatteryStaple() {
 	 */
 	this.generate = function(){
 
-		this.passwordString = "";
 		this.words = [];
 
 		this.ui.$passwordBox.empty();
@@ -228,18 +225,20 @@ function CorrectHorseBatteryStaple() {
 		if (numWords === undefined) {
 			numWords = this.options.minWords;
 		}
-		this.passwordString = this.getRandomWords( numWords );
 
+		this.getRandomWords( numWords );
+
+		console.log(numWords, this.words);
 		//generate a full string to test against min length
-		fullword = this.passwordString.join( this.options.separator.substring(0,1)||"" );
+		fullword = this.words.join( this.options.separator.substring(0,1)||"" );
 
 		//recurse untill our password is long enough;
-		if (fullword.length < this.options.minLenght) {
+		if (fullword.length < this.options.minLength) {
 			this.getWords(1);
 		}
 		else {
 			//once we have enough words
-			fullword = this.join(this.passwordString, this.stringToArray(this.options.separator) );
+			fullword = this.join(this.words, this.stringToArray(this.options.separator) );
 			this.ui.$passwordBox.val(fullword).trigger("change");
 			return;
 		}
@@ -326,7 +325,7 @@ function CorrectHorseBatteryStaple() {
 			self.setOptionFromUI(this);
 		});
 
-		this.ui.$btnGenerate.on(clickEvent, function() { self.generate(); } );
+		this.ui.$btnGenerate.on(clickEvent + " keypress", function() { self.generate(); } );
 
 		this.ui.$passwordBox.on("keyup change", function() {
 			$(this).parent().find("em").html( $(this).val().length );
