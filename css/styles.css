@@ -1,0 +1,304 @@
+body {
+	background:#222;
+	color:#111;
+	padding:20px;
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	font-size:16px;
+}
+
+input[type=text] {
+	width:40px;
+}
+
+label {
+	width:100px;
+	display:block;
+	float:left;
+}
+
+hr {
+	margin:20px 0;
+}
+
+#content {
+	margin:0 auto;
+	width:800px;
+	padding:0 50px 40px;
+	background: #ccc;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+
+	box-shadow:  0 0 20px 3px rgba(0,0,0,0.6);
+}
+
+.footnote {
+	margin:50px auto 20px;
+	width:800px;
+	padding:10px 50px;
+	border:1px solid #393939;
+	background: #292929;
+	background: rgba(0,0,0,0.1);
+	color:#444;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+
+	box-shadow: inset 0 0 20px 3px rgba(11,11,11,0.1);
+}
+
+.footnote a {
+	color:#555;
+}
+
+.footnote a:hover,
+.footnote a:focus {
+	color:#999;
+}
+
+fieldset {
+	border:0;
+	padding:0;
+	margin: 10px 0;
+}
+
+fieldset legend{
+	display: none;
+}
+
+input {
+	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+	font-size:14px;
+	padding:3px 5px;
+}
+
+#txt {
+	height:24px;
+	width:710px;
+	padding:12px 10px 10px;
+	border:1px solid #999;
+	background:#fefefe;
+	font-size:18px;
+	border-radius: 4px;
+}
+
+.input strong {
+	position: relative;
+	left:10px;
+	top:-26px;
+	margin-right:-30px;
+}
+
+h1 {
+	font-size:38px;
+	margin:0 0 30px;
+	width:100%;
+	position: relative;
+	left:-50px;
+	padding:5px 50px 10px;
+
+	background: #eeeeee; /* Old browsers */
+	background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+
+
+	border-radius: 10px 10px 0 0 ;
+
+	box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+
+}
+
+h2 {
+	font-size:26px;
+}
+
+.field {
+	padding:7px 0;
+}
+
+.cbx {
+	width:100%;
+	overflow: hidden;
+}
+
+.cbx input {
+	float:left;
+}
+
+.cbx label {
+	width:auto;
+	margin-left:20px;
+}
+
+.button {
+	cursor: pointer;
+	font-size: 16px;
+	position: relative;
+	padding:10px 80px;
+	outline:0 none;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	color: #ffffff;
+
+	background: #3d3d3d;
+	background: -moz-linear-gradient(top,  #a8a8a8 0%, #3d3d3d 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8a8a8), color-stop(100%,#3d3d3d)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #a8a8a8 0%,#3d3d3d 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #a8a8a8 0%,#3d3d3d 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #a8a8a8 0%,#3d3d3d 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #a8a8a8 0%,#3d3d3d 100%); /* W3C */
+
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #2e2e2e;
+	-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,1);
+	-webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,1);
+	box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 1px rgba(255,255,255,1);
+	text-shadow: 0px -1px 0px rgba(000,000,000,0.7), 0px 1px 0px rgba(255,255,255,0.3);
+
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.button:hover {
+
+	background: -moz-linear-gradient(top,  #999999 0%, #303030 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999999), color-stop(100%,#303030)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #999999 0%,#303030 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #999999 0%,#303030 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #999999 0%,#303030 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #999999 0%,#303030 100%); /* W3C */
+
+	-moz-box-shadow: 0px 1px 5px rgba(000,000,000,0.7), inset 0px 0px 1px rgba(255,255,255,1);
+	-webkit-box-shadow: 0px 1px 5px rgba(000,000,000,0.7), inset 0px 0px 1px rgba(255,255,255,1);
+	box-shadow: 0px 1px 5px rgba(000,000,000,0.7), inset 0px 0px 1px rgba(255,255,255,1);
+}
+
+.button:active {
+	background: -moz-linear-gradient(top,  #999999 0%, #303030 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999999), color-stop(100%,#303030)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #999999 0%,#2a2a2a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #999999 0%,#303030 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #999999 0%,#303030 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #999999 0%,#2a2a2a 100%); /* W3C */
+
+	-moz-box-shadow: 0px 1px 5px rgba(000,000,000,0.6), inset 0px 0px 1px rgba(255,255,255,1);
+	-webkit-box-shadow: 0px 1px 5px rgba(000,000,000,0.6), inset 0px 0px 1px rgba(255,255,255,1);
+	box-shadow: 0px 1px 5px rgba(000,000,000,0.6), inset 0px 0px 1px rgba(255,255,255,1);
+
+	top:1px;
+	left:1px;
+}
+
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width : 700px){
+	body {
+		padding:3px;
+	}
+	#content, .footnote {
+		width:90%;
+		padding:40px 5% 40px;
+		position: relative;
+	}
+
+	#txt {
+		width:95%;
+		padding:8px 2%;
+		font-size: 16px;
+		margin:0 0 3px;
+	}
+
+	h1 {
+		font-size: 18px;
+		width:100%;
+		padding:10px 0;
+		margin:0;
+		position: absolute;
+		text-indent: 5%;
+		left:0;
+		top:0;
+	}
+
+	h2 {
+		font-size:16px;
+	}
+
+	.input strong {
+		position: static;
+		margin-right:5px;
+	}
+
+	fieldset {
+		height:30px;
+		padding-left:15px;
+		overflow: hidden;
+	}
+
+	fieldset.active {
+		height:auto;
+	}
+
+	fieldset legend {
+		display: block;
+		font-weight: bold;
+		position: relative;
+		margin-left:-15px;
+
+		font-size: 16px;
+		color: #464646;
+		padding: 2px 10px 2px 20px;
+		background: -moz-linear-gradient( top, #ededed 0%, #c7c7c7);
+		background: -webkit-gradient( linear, left top, left bottom, from(#ededed), to(#c7c7c7));
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		border: 1px solid #2e2e2e;
+		-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 1px rgba(255,255,255,1);
+		-webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 1px rgba(255,255,255,1);
+		box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 1px rgba(255,255,255,1);
+		text-shadow: 0px -1px 0px rgba(000,000,000,0.7), 0px 1px 0px rgba(255,255,255,0.3);
+
+	}
+
+	fieldset legend::before {
+		content:" + ";
+		position: absolute;
+		left:5px;
+		top:-2px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	fieldset.active legend::before {
+		content:" – ";
+		top:-3px;
+	}
+
+	fieldset small {
+		display: none;
+	}
+
+	.cbx label {
+		width: 80%;
+		margin-left: 5px;
+	}
+
+	.button {
+		padding:10px;
+		width:100%;
+	}
+}

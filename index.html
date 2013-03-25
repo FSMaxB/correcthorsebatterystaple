@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xml:lang="en-au" lang="en-au">
+<head>
+	<meta charset="utf-8" />
+	<title>Correct Horse Battery Staple | Generate Secure Memorable Passwords</title>
+	<meta name="description" content="Correct Horse Battery Staple, Generate Secure Memorable Passwords. A secure password will help keep you safer online" />
+	<meta name="keywords" content="Correct Horse Battery Staple, Generate Secure Memorable Passwords, xkcd, secure password, memorable password, password generator" />
+	<meta name="revisit-after" content="7 days" />
+	<meta name="robots" content="index,follow" />
+	<meta name="rating" content="General" />
+
+	<link rel="apple-touch-icon" href="/apple-icon-touch.png">
+	<link rel="icon" href="/favicon.png">
+	<!--[if IE]>
+		<link rel="shortcut icon" href="/favicon.ico">
+	<![endif]-->
+	<meta name="msapplication-TileColor" content="#f0f0f0">
+	<meta name="msapplication-TileImage" content="/win8-tile-icon.png">
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+	<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+	<div id="content">
+		<h1>Correct Horse Battery Staple</h1>
+		<h2>Secure password generator to help keep you safer online</h2>
+		<hr>
+		<div class="field input">
+			<input type="text" id="txt"/><strong>Length:</strong><em>0</em>
+		</div>
+
+		<fieldset>
+			<legend>Options</legend>
+			<div class="field">
+				<label for="min-words">Min words</label>
+				<select id="min-words" data-option="minWords">
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4" selected="selected">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+
+
+			</div>
+			<div class="field">
+				<label for="min-length">Min Length</label>
+				<select id="min-length" data-option="minLength">
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20" selected="selected">20</option>
+					<option value="25">25</option>
+					<option value="30">30</option>
+					<option value="35">35</option>
+					<option value="40">40</option>
+				</select>
+				<small>(including the separator)</small>
+			</div>
+
+			<div class="field">
+				<label for="separator">Separator</label>
+				<input type="text" id="separator" data-option="separator" value="-" /> <small>(Multiple values will be used randomly, try <strong>*&amp;^%$#!</strong> )</small>
+			</div>
+
+			<div class="field cbx">
+				<input type="checkbox" checked="checked" data-option="firstUpper" id="first-upper" />
+				<label for="first-upper">Make First Letter Uppercase</label>
+			</div>
+
+			<div class="field cbx">
+				<input type="checkbox" checked="checked" data-option="appendNumbers" id="append-numbers" />
+				<label for="append-numbers">Append random number to the end (0 - 9)</label>
+			</div>
+
+			<div class="field cbx">
+				<input type="checkbox" data-option="saveOptions" id="save-options" />
+				<label for="save-options">Save these options.*</label>
+			</div>
+
+			<!--<div class="field cbx">-->
+			<!--	<input type="checkbox" id="jargon" />-->
+			<!--	<label for="jargon">Add more words to the mix*</label>-->
+			<!--</div>-->
+		</fieldset>
+
+		<p><input type="button" id="btn-generate" class="button" value="Generate password"/></p>
+
+	</div>
+
+
+	<div class="footnote">
+		<p>This is an <a href="http://xkcd.com/936/">XKCD inspired</a> password generator.
+		<p>* Saving options will utilise LocalStorage. De-selecting will remove the options.</p>
+		<p>Built and maintained by <a href="http://afterlight.com.au">Afterlight Web Development</a>
+	</div>
+
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-30464405-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+</body>
+</html>
