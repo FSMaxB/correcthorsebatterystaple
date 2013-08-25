@@ -61,7 +61,7 @@ function CorrectHorseBatteryStaple() {
 	 * Set an option and optionally save it to LocalStorage if required.
 	 *
 	 * @param	{String} key
-	 * @param	{Mixed}  value
+	 * @param	{*}  value
 	 */
 	this.setOption = function(key, value) {
 		this.options[key] = value;
@@ -250,8 +250,8 @@ function CorrectHorseBatteryStaple() {
 	this.join = function(words, separators) {
 		var wordsLen,
 			i,
-			theString = '',
-			symbol = '';
+			theString = "",
+			symbol = "";
 
 		wordsLen = words.length;
 
@@ -285,7 +285,7 @@ function CorrectHorseBatteryStaple() {
 		var chars  = [],
 			i = 0,
 			len = str.length || 0,
-			theChar = '';
+			theChar = "";
 
 		if (typeof(str) !== "string" && len === 0) {
 			return false;
@@ -314,7 +314,7 @@ function CorrectHorseBatteryStaple() {
 	 * Bind all UI related events
 	 */
 	this.bindEvents = function() {
-		var clickEvent = !!('ontouchstart' in window) ? "touchend" : "click";
+		var clickEvent = !!("ontouchstart" in window) ? "touchend" : "click";
 
 		//Update options when UI is updated
 		$("[data-option]").on("keyup change", function(){
