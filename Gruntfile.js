@@ -41,6 +41,15 @@ module.exports = function(grunt) {
 					'../deploy/js/main.js': ['js/main.js']
 				}
 			}
+		},
+		cssmin: {
+			minify: {
+				expand: true,
+				cwd:    'css/',
+				src:    ['*.css'],
+				dest:   '../deploy/css/',
+				ext:    '.css'
+			}
 		}
 	});
 
@@ -49,7 +58,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	grunt.registerTask('default', ['less']);
-
 
 	grunt.registerMultiTask('less', 'Build the Less Files in to CSS files', function() {
 
@@ -68,7 +76,7 @@ module.exports = function(grunt) {
 			force: true,
 			debug: true,
 			debugType: 'comment',
-			optimization:1,
+			optimization:2,
 			compress: false
 		};
 
@@ -85,8 +93,6 @@ module.exports = function(grunt) {
 			});
 		}
 
-//		options = _.extend(options, config.options||{});
-
 		lessmonitor.app.init( options );
 	});
 
@@ -94,6 +100,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('deploy', 'Generates all the things and copies everything to a deploy folder', function() {
 
 		taskName('Deployment');
+
+
 
 		// First do a build of the Less files so we're sure
 		// the deployment folder has the latest build.
