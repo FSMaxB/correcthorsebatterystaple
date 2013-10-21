@@ -1,4 +1,3 @@
-
 /**
  * That's a Battery Staple!
  * Correct Horse!
@@ -7,7 +6,7 @@
  * @version 1.2
  * @license MIT
  *
- * @returns	{CorrectHorseBatteryStaple}
+ * @returns    {CorrectHorseBatteryStaple}
  */
 function CorrectHorseBatteryStaple() {
 	"use strict";
@@ -16,7 +15,7 @@ function CorrectHorseBatteryStaple() {
 
 	// Application configuration
 	this.config = {
-		storageKey: "CHBSOptions",
+		storageKey:       "CHBSOptions",
 		randomNumberPool: 10
 	};
 
@@ -37,11 +36,11 @@ function CorrectHorseBatteryStaple() {
 
 	// Default options
 	this.defaults = {
-		minLength: 10,
-		firstUpper: true,
-		minWords: 3,
+		minLength:     10,
+		firstUpper:    true,
+		minWords:      3,
 		appendNumbers: true,
-		separator: "-"
+		separator:     "-"
 	};
 
 	// Session options
@@ -50,23 +49,16 @@ function CorrectHorseBatteryStaple() {
 	// Set some sane defaults
 	this.options = $.extend(this.options, this.defaults);
 
-	// Application configurations
-	this.config = {
-		storageKey: "CHBSOptions",
-		randomNumberPool: 10
-	};
-
-
 	/**
 	 * Set an option and optionally save it to LocalStorage if required.
 	 *
-	 * @param	{String} key
-	 * @param	{*}  value
+	 * @param    {String} key
+	 * @param    {*}  value
 	 */
 	this.setOption = function(key, value) {
 		this.options[key] = value;
 
-		if (this.options.saveOptions === true) {
+		if ( this.options.saveOptions === true ) {
 			this.saveOptions();
 		}
 	};
@@ -76,7 +68,7 @@ function CorrectHorseBatteryStaple() {
 	 * Save Options to LocalStorage
 	 */
 	this.saveOptions = function() {
-		self.storage.setItem( self.config.storageKey, JSON.stringify(self.options) );
+		self.storage.setItem(self.config.storageKey, JSON.stringify(self.options));
 	};
 
 
@@ -84,20 +76,20 @@ function CorrectHorseBatteryStaple() {
 	 * Remove Options from LocalStorage
 	 */
 	this.destroyOptions = function() {
-		self.storage.removeItem( self.config.storageKey );
+		self.storage.removeItem(self.config.storageKey);
 	};
 
 
 	/**
 	 * Update the UI for an option.
 	 *
-	 * @param	{String}	key
-	 * @param	{String}	value
+	 * @param    {String}    key
+	 * @param    {String}    value
 	 */
 	this.setUIOption = function(key, value) {
-		var $el = $("[data-option='"+key+"']");
+		var $el = $("[data-option='" + key + "']");
 
-		if ($el.is("input[type=checkbox]")) {
+		if ( $el.is("input[type=checkbox]") ) {
 			$el.prop("checked", value);
 			return;
 		}
@@ -113,8 +105,8 @@ function CorrectHorseBatteryStaple() {
 	this.setAllUIOptions = function() {
 		var opt;
 
-		for (opt in this.options) {
-			if (this.options.hasOwnProperty(opt)) {
+		for ( opt in this.options ) {
+			if ( this.options.hasOwnProperty(opt) ) {
 				self.setUIOption(opt, this.options[opt]);
 			}
 		}
@@ -130,11 +122,11 @@ function CorrectHorseBatteryStaple() {
 		var $el = $(el),
 			val = $el.val();
 
-		if ($el.is("[type=checkbox]")) {
+		if ( $el.is("[type=checkbox]") ) {
 			val = $el.prop("checked");
 		}
 
-		self.setOption( $el.data("option"), val );
+		self.setOption($el.data("option"), val);
 	};
 
 
@@ -148,12 +140,12 @@ function CorrectHorseBatteryStaple() {
 	 */
 	this.loadData = function(file, callback) {
 
-		$.get("data/"+file, function(content, textStatus) {
+		$.get("data/" + file, function(content, textStatus) {
 
 			self.dataSets[file] = content.toString().split(",");
-			self.data = self.data.concat( self.dataSets[file] );
+			self.data = self.data.concat(self.dataSets[file]);
 
-			if (callback) {
+			if ( callback ) {
 				callback.call(this, content, textStatus);
 			}
 
@@ -178,16 +170,16 @@ function CorrectHorseBatteryStaple() {
 	 *
 	 * @returns {Array}  The array of words
 	 */
-	this.getRandomWords = function(n){
+	this.getRandomWords = function(n) {
 		var len = this.data.length,
 			rand = Math.floor(Math.random() * len),
 			i, word;
 
-		for (i = 0; i < n; i++) {
+		for ( i = 0; i < n; i++ ) {
 			word = this.data[rand];
 			word = this.options.firstUpper ? word.charAt(0).toUpperCase() + word.slice(1) : word;
 			this.words.push(word);
-			rand = Math.floor(Math.random()*len);
+			rand = Math.floor(Math.random() * len);
 		}
 
 		return this.words;
@@ -197,55 +189,55 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Generate a password
 	 */
-	this.generate = function(){
+	this.generate = function() {
 
 		this.words = [];
-
-		this.ui.$passwordBox.empty();
 
 		this.options.minWords = parseInt(this.options.minWords, 10) || this.defaults.minWords;
 		this.options.minLength = parseInt(this.options.minLength, 10) || this.defaults.minLength;
 
+		this.fullPassword = this.getWords();
 
-		this.getWords();
+		this.ui.$passwordBox.val(this.fullPassword).trigger("change");
+
+		return this.fullPassword;
 	};
 
 
 	/**
 	 * Get words from the wordlist
 	 *
-	 * @param	{Number}	numWords	Number of words to get
+	 * @param    {Number}    [numWords]    Number of words to get
 	 */
-	this.getWords = function(numWords){
+	this.getWords = function(numWords) {
 		var fullword;
 
-		if (numWords === undefined) {
+		if ( numWords === undefined ) {
 			numWords = this.options.minWords;
 		}
 
-		this.getRandomWords( numWords );
+		this.getRandomWords(numWords);
 
 		//generate a full string to test against min length
-		fullword = this.words.join( this.options.separator.substring(0,1)||"" );
+		fullword = this.words.join(this.options.separator.substring(0, 1) || "");
 
 		//recurse untill our password is long enough;
-		if (fullword.length < this.options.minLength) {
+		if ( fullword.length < this.options.minLength ) {
 			this.getWords(1);
 		}
 		else {
 			//once we have enough words
-			fullword = this.join(this.words, this.stringToArray(this.options.separator) );
-			this.ui.$passwordBox.val(fullword).trigger("change");
-			return;
+			fullword = this.join(this.words, this.stringToArray(this.options.separator));
+			return fullword;
 		}
 	};
 
 	/**
 	 * Join a set of words with random separators
 	 *
-	 * @param	{Array}		words		Array of words
-	 * @param	{String}	separators	String that will be split to separators
-	 * @returns	{String}
+	 * @param   {Array}    words       Array of words
+	 * @param   {Array}    separators
+	 * @returns {String}
 	 */
 	this.join = function(words, separators) {
 		var wordsLen,
@@ -255,23 +247,23 @@ function CorrectHorseBatteryStaple() {
 
 		wordsLen = words.length;
 
-		if (this.options.appendNumbers) {
-			words.push(Math.ceil(Math.random()* this.config.randomNumberPool ));
+		if ( this.options.appendNumbers ) {
+			words.push(Math.ceil(Math.random() * this.config.randomNumberPool));
 			wordsLen = words.length;
 		}
 
-		for (i = 0; i < wordsLen; i++) {
+		for ( i = 0; i < wordsLen; i++ ) {
 
-			if (i !== wordsLen - 1) {
+			if ( i !== wordsLen - 1 ) {
 				symbol = this.getSeparator(separators);
 			}
 			else {
-				symbol = '';
+				symbol = "";
 			}
 
 			theString += words[i] + symbol;
 		}
-		return theString ;
+		return theString;
 	};
 
 
@@ -279,20 +271,20 @@ function CorrectHorseBatteryStaple() {
 	 * Convert a string to an array of characters
 	 *
 	 * @param {String} str The string
-	 * @returns {Array}  Array of characters
+	 * @returns {Array|Boolean}  Array of characters
 	 */
 	this.stringToArray = function(str) {
-		var chars  = [],
+		var chars = [],
 			i = 0,
 			len = str.length || 0,
 			theChar = "";
 
-		if (typeof(str) !== "string" && len === 0) {
+		if ( typeof(str) !== "string" && len === 0 ) {
 			return false;
 		}
 
-		for (i; i < len; i++) {
-			theChar = str.substring(i,i+1);
+		for ( i; i < len; i++ ) {
+			theChar = str.substring(i, i + 1);
 			chars.push(theChar);
 		}
 		return chars;
@@ -302,11 +294,11 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Get a random separator from the separators array
 	 *
-	 * @param	{Array}	seps
-	 * @returns	{String}
+	 * @param    {Array}    seps
+	 * @returns    {String}
 	 */
 	this.getSeparator = function(seps) {
-		return seps[ Math.floor( Math.random() * seps.length ) ] || "";
+		return seps[ Math.floor(Math.random() * seps.length) ] || "";
 	};
 
 
@@ -317,19 +309,21 @@ function CorrectHorseBatteryStaple() {
 		var clickEvent = !!("ontouchstart" in window) ? "touchend" : "click";
 
 		//Update options when UI is updated
-		$("[data-option]").on("keyup change", function(){
+		$("[data-option]").on("keyup change", function() {
 			self.setOptionFromUI(this);
 		});
 
-		this.ui.$btnGenerate.on(clickEvent + " keypress", function() { self.generate(); } );
+		this.ui.$btnGenerate.on(clickEvent + " keypress", function() {
+			self.generate();
+		});
 
 		this.ui.$passwordBox.on("keyup change", function() {
-			$(this).parent().find("em").html( $(this).val().length );
+			$(this).parent().find("em").html($(this).val().length);
 		});
 
 		// Update the saveOptions option
 		$("#save-options").on("change", function() {
-			if ($(this).prop("checked") === true) {
+			if ( $(this).prop("checked") === true ) {
 				self.saveOptions();
 			}
 			// If we no longer wish to save, destroy our LS entry
@@ -370,12 +364,12 @@ function CorrectHorseBatteryStaple() {
 	this.init = function() {
 
 		// Load options from the LocalStorage if present
-		if (this.storage && this.storage.getItem( this.config.storageKey )) {
+		if ( this.storage && this.storage.getItem(this.config.storageKey) ) {
 			try {
-				this.options = JSON.parse(this.storage.getItem( this.config.storageKey ));
+				this.options = JSON.parse(this.storage.getItem(this.config.storageKey));
 				this.setAllUIOptions();
 
-			} catch (e) {
+			} catch ( e ) {
 				console.log("Could not parse settings from LocalStorage");
 			}
 
@@ -383,14 +377,14 @@ function CorrectHorseBatteryStaple() {
 
 		// no local storage available, read the options from the UI
 		else {
-			$("[data-option]").each(function(k,v) {
+			$("[data-option]").each(function(k, v) {
 				self.setOptionFromUI(this);
 			});
 		}
 
 
 		// Load the default words
-		this.loadData("wordlist.txt", function(){
+		this.loadData("wordlist.txt", function() {
 			self.generate();
 		});
 
@@ -408,23 +402,23 @@ function CorrectHorseBatteryStaple() {
 var CHBS = new CorrectHorseBatteryStaple();
 
 /*
-	This software is licensed under the MIT License:
+ This software is licensed under the MIT License:
 
-	Copyright (c) 2013, John Van Der Loo
+ Copyright (c) 2013, John Van Der Loo
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this
-	software and associated documentation files (the "Software"), to deal in the Software
-	without restriction, including without limitation the rights to use, copy, modify, merge,
-	publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
-	to whom the Software is furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this
+ software and associated documentation files (the "Software"), to deal in the Software
+ without restriction, including without limitation the rights to use, copy, modify, merge,
+ publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+ to whom the Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-	INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-	PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-	HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-	OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
-	OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
