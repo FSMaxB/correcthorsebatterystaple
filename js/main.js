@@ -223,7 +223,7 @@ function CorrectHorseBatteryStaple() {
 
 		//recurse untill our password is long enough;
 		if ( fullword.length < this.options.minLength ) {
-			this.getWords(1);
+			return this.getWords(1);
 		}
 		else {
 			//once we have enough words
