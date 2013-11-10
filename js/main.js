@@ -7,13 +7,17 @@
  * @license MIT
  *
  * @returns    {CorrectHorseBatteryStaple}
+ * @constructor
  */
 function CorrectHorseBatteryStaple() {
 	"use strict";
 
 	var self = this;
 
-	// Application configuration
+	/**
+	 * Application configuration
+	 * @type {Object}
+	 */
 	this.config = {
 		storageKey:       "CHBSOptions",
 		randomNumberPool: 10
@@ -25,13 +29,21 @@ function CorrectHorseBatteryStaple() {
 
 	this.words = [];
 
-	// UI references
+	/**
+	 * UI references
+	 * @private
+	 * @type {Object}
+	 */
 	this.ui = {
 		$passwordBox: $("#txt"),
 		$btnGenerate: $("#btn-generate")
 	};
 
-	// Shorthand to localStorage
+	/**
+	 * Shorthand to localStorage
+	 * @private
+	 * @type {LocalStorage}
+	 */
 	this.storage = window.localStorage || false;
 
 	// Default options
@@ -43,7 +55,10 @@ function CorrectHorseBatteryStaple() {
 		separator:     "-"
 	};
 
-	// Session options
+	/**
+	 * Session options
+	 * @type {Object}
+	 */
 	this.options = {};
 
 	// Set some sane defaults
@@ -52,7 +67,7 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Set an option and optionally save it to LocalStorage if required.
 	 *
-	 * @param    {String} key
+	 * @param    {string} key
 	 * @param    {*}  value
 	 */
 	this.setOption = function(key, value) {
@@ -83,8 +98,8 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Update the UI for an option.
 	 *
-	 * @param    {String}    key
-	 * @param    {String}    value
+	 * @param    {string}    key
+	 * @param    {string}    value
 	 */
 	this.setUIOption = function(key, value) {
 		var $el = $("[data-option='" + key + "']");
@@ -116,7 +131,7 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Set a config option from the UI
 	 *
-	 * @param {Node} el
+	 * @param {HTMLElement} el
 	 */
 	this.setOptionFromUI = function(el) {
 		var $el = $(el),
@@ -135,7 +150,7 @@ function CorrectHorseBatteryStaple() {
 	 * The data file is assumed to be a CSV list of words and will be
 	 * split in to an array of words and appended to the main data key
 	 *
-	 * @param {String} file File to load
+	 * @param {string} file File to load
 	 * @param {Function} [callback] optional callback
 	 */
 	this.loadData = function(file, callback) {
@@ -166,7 +181,7 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Retrieve a number of random words from our dataset
 	 *
-	 * @param {Number} n Number of words to get
+	 * @param {number} n Number of words to get
 	 *
 	 * @returns {Array}  The array of words
 	 */
@@ -207,7 +222,7 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Get words from the wordlist
 	 *
-	 * @param    {Number}    [numWords]    Number of words to get
+	 * @param    {number}    [numWords]    Number of words to get
 	 */
 	this.getWords = function(numWords) {
 		var fullword;
@@ -237,7 +252,7 @@ function CorrectHorseBatteryStaple() {
 	 *
 	 * @param   {Array}    words       Array of words
 	 * @param   {Array}    separators
-	 * @returns {String}
+	 * @returns {string}
 	 */
 	this.join = function(words, separators) {
 		var wordsLen,
@@ -270,8 +285,8 @@ function CorrectHorseBatteryStaple() {
 	/**
 	 * Convert a string to an array of characters
 	 *
-	 * @param {String} str The string
-	 * @returns {Array|Boolean}  Array of characters
+	 * @param {string} str The string
+	 * @returns {(Array|boolean)}  Array of characters
 	 */
 	this.stringToArray = function(str) {
 		var chars = [],
@@ -399,7 +414,16 @@ function CorrectHorseBatteryStaple() {
 
 }
 
-var CHBS = new CorrectHorseBatteryStaple();
+// Set up for AMD inclusion
+if (typeof define === "function") {
+	define(["jquery"], function() {
+		"use strict";
+		return CorrectHorseBatteryStaple;
+	});
+}
+else {
+	window.CHBS = new CorrectHorseBatteryStaple();
+}
 
 /*
  This software is licensed under the MIT License:
