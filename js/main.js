@@ -263,7 +263,7 @@ function CorrectHorseBatteryStaple() {
 		wordsLen = words.length;
 
 		if ( this.options.appendNumbers ) {
-			words.push(Math.ceil(Math.random() * this.config.randomNumberPool));
+			words.push(Math.floor(Math.random() * this.config.randomNumberPool));
 			wordsLen = words.length;
 		}
 
