@@ -2,6 +2,9 @@
   "name": "CorrectHorseBatteryStaple",
   "private": true,
   "dependencies": {},
+  "scripts": {
+    "deploy": "grunt deploy"
+  },
   "devDependencies": {
     "colors": "~0.6.1",
     "less-monitor": "~0.2.0",

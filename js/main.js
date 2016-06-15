@@ -366,8 +366,9 @@ function CorrectHorseBatteryStaple() {
 		//});
 
 
-		$("fieldset").on(clickEvent, "legend", function() {
-			$(this).closest("fieldset").toggleClass("active");
+		$(".fieldset")
+			.on(clickEvent, "legend", function() {
+			$(this).closest(".fieldset").toggleClass("active");
 		});
 
 	};
@@ -392,7 +393,7 @@ function CorrectHorseBatteryStaple() {
 
 		// no local storage available, read the options from the UI
 		else {
-			$("[data-option]").each(function(k, v) {
+			$("[data-option]").each(function() {
 				self.setOptionFromUI(this);
 			});
 		}

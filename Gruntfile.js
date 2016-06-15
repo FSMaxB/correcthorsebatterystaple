@@ -77,7 +77,7 @@ module.exports = function(grunt) {
 			debug: true,
 			debugType: 'comment',
 			optimization:2,
-			compress: false
+			compress: true
 		};
 
 		lessmonitor.cli( lessmonitor.app );
