@@ -231,14 +231,14 @@ function CorrectHorseBatteryStaple() {
 	 */
 	this.getRandomWords = function(n) {
 		var len = this.data.length,
-			rand = Math.floor(Math.random() * len),
+			rand = this.getUniformRandomInteger(0, len),
 			i, word;
 
 		for ( i = 0; i < n; i++ ) {
 			word = this.data[rand];
 			word = this.options.firstUpper ? word.charAt(0).toUpperCase() + word.slice(1) : word;
 			this.words.push(word);
-			rand = Math.floor(Math.random() * len);
+			rand = this.getUniformRandomInteger(0, len);
 		}
 
 		return this.words;
@@ -307,7 +307,7 @@ function CorrectHorseBatteryStaple() {
 		wordsLen = words.length;
 
 		if ( this.options.appendNumbers ) {
-			words.push(Math.floor(Math.random() * this.config.randomNumberPool));
+			words.push(this.getUniformRandomInteger(0, this.config.randomNumberPool));
 			wordsLen = words.length;
 		}
 
@@ -357,7 +357,7 @@ function CorrectHorseBatteryStaple() {
 	 * @returns    {String}
 	 */
 	this.getSeparator = function(seps) {
-		return seps[ Math.floor(Math.random() * seps.length) ] || "";
+		return seps[ this.getUniformRandomInteger(0, seps.length) ] || "";
 	};
 
 
