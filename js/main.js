@@ -198,7 +198,7 @@ function CorrectHorseBatteryStaple() {
 		// get a cryptoObject to access the Crypto-API
 		var cryptoObject = window.crypto || window.msCrypto;
 
-		if ((!cryptoObject) || (typeof cryptoObject.getRandomValues !== "function") || (typeof Uint32Array !== "function")) {
+		if ((!cryptoObject) || (typeof cryptoObject.getRandomValues !== "function") || (!Uint32Array)) {
 			var message = "Your browser has no secure source of random numbers.";
 			alert(message)
 			throw Error(message);
