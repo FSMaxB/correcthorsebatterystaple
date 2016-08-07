@@ -24,7 +24,7 @@ function CorrectHorseBatteryStaple() {
 
 	this.data = [];
 
-	this.dataSets = {};
+	this.wordlists = {};
 
 	this.words = [];
 
@@ -147,15 +147,17 @@ function CorrectHorseBatteryStaple() {
 	 * The data file is assumed to be a CSV list of words and will be
 	 * split in to an array of words and appended to the main data key
 	 *
-	 * @param {string} file File to load
+	 * @param {string} language Language to load
 	 * @param {Function} [callback] optional callback
 	 */
-	this.loadData = function(file, callback) {
+	this.loadData = function(language, callback) {
 
-		$.get("data/" + file, function(content, textStatus) {
+		$.get("data/" + language + ".txt", function(content, textStatus) {
 
-			self.dataSets[file] = content.toString().split(",");
-			self.data = self.data.concat(self.dataSets[file]);
+			if (!self.wordlists[language]) {
+				self.wordlists[language] = content.toString().split("\n");
+			}
+			self.data = self.wordlists[language]
 
 			if ( callback ) {
 				callback.call(this, content, textStatus);
@@ -382,24 +384,6 @@ function CorrectHorseBatteryStaple() {
 
 		});
 
-		//$("#jargon").on("change", function(){
-		//	var file = "jargon.txt";
-		//
-		//	if ($(this).is(":checked")){
-		//		if (!self.dataSets[file]) {
-		//			self.loadData(file);
-		//		}
-		//		else {
-		//			self.data = self.data.concat(self.dataSets[file]);
-		//		}
-		//	}
-		//	else {
-		//		self.data = self.dataSets["wordlist.txt"];
-		//	}
-		//
-		//});
-
-
 		$(".fieldset")
 			.on(clickEvent, "legend", function() {
 			$(this).closest(".fieldset").toggleClass("active");
@@ -434,7 +418,7 @@ function CorrectHorseBatteryStaple() {
 
 
 		// Load the default words
-		this.loadData("wordlist.txt", function() {
+		this.loadData("english", function() {
 			self.generate();
 		});
 
