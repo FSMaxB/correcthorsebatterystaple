@@ -49,7 +49,7 @@ function CorrectHorseBatteryStaple() {
 	this.defaults = {
 		firstUpper:    true,
 		minWords:      4,
-		separator:     "-"
+		separator:     " "
 	};
 
 	/**
@@ -274,42 +274,10 @@ function CorrectHorseBatteryStaple() {
 		this.getRandomWords(numWords);
 
 		//generate a full string to test against min length
-		fullword = this.words.join(this.options.separator.substring(0, 1) || "");
+		fullword = this.words.join(this.options.separator);
 
-		//once we have enough words
-		fullword = this.join(this.words, this.stringToArray(this.options.separator));
 		return fullword;
 	};
-
-	/**
-	 * Join a set of words with random separators
-	 *
-	 * @param   {Array}    words       Array of words
-	 * @param   {Array}    separators
-	 * @returns {string}
-	 */
-	this.join = function(words, separators) {
-		var wordsLen,
-			i,
-			theString = "",
-			symbol = "";
-
-		wordsLen = words.length;
-
-		for ( i = 0; i < wordsLen; i++ ) {
-
-			if ( i !== wordsLen - 1 ) {
-				symbol = this.getSeparator(separators);
-			}
-			else {
-				symbol = "";
-			}
-
-			theString += words[i] + symbol;
-		}
-		return theString;
-	};
-
 
 	/**
 	 * Convert a string to an array of characters
@@ -333,18 +301,6 @@ function CorrectHorseBatteryStaple() {
 		}
 		return chars;
 	};
-
-
-	/**
-	 * Get a random separator from the separators array
-	 *
-	 * @param    {Array}    seps
-	 * @returns    {String}
-	 */
-	this.getSeparator = function(seps) {
-		return seps[ this.getUniformRandomInteger(0, seps.length) ] || "";
-	};
-
 
 	/**
 	 * Bind all UI related events
