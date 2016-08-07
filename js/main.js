@@ -47,7 +47,6 @@ function CorrectHorseBatteryStaple() {
 
 	// Default options
 	this.defaults = {
-		minLength:     10,
 		firstUpper:    true,
 		minWords:      3,
 		separator:     "-"
@@ -251,7 +250,6 @@ function CorrectHorseBatteryStaple() {
 		this.words = [];
 
 		this.options.minWords = parseInt(this.options.minWords, 10) || this.defaults.minWords;
-		this.options.minLength = parseInt(this.options.minLength, 10) || this.defaults.minLength;
 
 		this.fullPassword = this.getWords();
 
@@ -278,15 +276,9 @@ function CorrectHorseBatteryStaple() {
 		//generate a full string to test against min length
 		fullword = this.words.join(this.options.separator.substring(0, 1) || "");
 
-		//recurse untill our password is long enough;
-		if ( fullword.length < this.options.minLength ) {
-			return this.getWords(1);
-		}
-		else {
-			//once we have enough words
-			fullword = this.join(this.words, this.stringToArray(this.options.separator));
-			return fullword;
-		}
+		//once we have enough words
+		fullword = this.join(this.words, this.stringToArray(this.options.separator));
+		return fullword;
 	};
 
 	/**
