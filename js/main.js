@@ -246,6 +246,49 @@ function CorrectHorseBatteryStaple() {
 	}
 
 	/**
+	 * Generate example passwords:
+	 *
+	 * Generates passwords with equivalent strengths to
+	 * the given number of words.
+	 */
+	this.generateEquivalentPasswords = function(words) {
+		var possibilities = Math.pow(this.data.length, words);
+
+		// lowercase letters
+		var lowercasePassword = [];
+		var lowercaseLength = Math.floor(Math.log(possibilities)/Math.log(26));
+		for (var i = 0; i < lowercaseLength; i++) {
+			lowercasePassword.push(this.getUniformRandomInteger(97, 123));
+		}
+		$("#lcase-password").text(String.fromCharCode.apply(this, lowercasePassword));
+		$("#lcase-length").text(lowercaseLength);
+
+		// alphanumeric
+		var alphanumPassword = [];
+		var alphanumLength = Math.floor(Math.log(possibilities)/Math.log(62));
+		for (var i = 0; i < alphanumLength; i++) {
+			var character = 91;
+			while (((character >= 91) && (character <= 96))
+				|| ((character >= 58) && (character <= 64))) {
+				character = this.getUniformRandomInteger(48, 123);
+			}
+			alphanumPassword.push(character);
+		}
+		$("#alnum-password").text(String.fromCharCode.apply(this, alphanumPassword));
+		$("#alnum-length").text(alphanumLength);
+
+		// printable ascii
+		var asciiPassword = [];
+		var asciiLength = Math.floor(Math.log(possibilities)/Math.log(94));
+		for (var i = 0; i < asciiLength; i++) {
+			asciiPassword.push(this.getUniformRandomInteger(33, 127));
+		}
+		$("#ascii-password").text(String.fromCharCode.apply(this, asciiPassword));
+		$("#ascii-length").text(asciiLength);
+	}
+
+
+	/**
 	 * Generate a password
 	 */
 	this.generate = function() {
@@ -259,6 +302,7 @@ function CorrectHorseBatteryStaple() {
 
 		this.ui.$passwordBox.val(this.fullPassword).trigger("change");
 		$("#display-entropy").text(this.calculateEntropy(this.options.minWords));
+		this.generateEquivalentPasswords(this.options.minWords);
 
 		return this.fullPassword;
 	};
