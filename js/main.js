@@ -49,6 +49,7 @@ function CorrectHorseBatteryStaple() {
 	this.defaults = {
 		firstUpper:    true,
 		minWords:      4,
+		language: "english",
 		separator:     " "
 	};
 
@@ -299,6 +300,7 @@ function CorrectHorseBatteryStaple() {
 		this.words = [];
 
 		this.options.minWords = parseInt(this.options.minWords, 10) || this.defaults.minWords;
+		this.options.language = this.options.language || this.defaults.language;
 
 		this.fullPassword = this.getWords();
 
@@ -365,7 +367,9 @@ function CorrectHorseBatteryStaple() {
 		});
 
 		this.ui.$btnGenerate.on(clickEvent + " keypress", function() {
-			self.generate();
+			self.loadData(self.options.language || self.defaults.language, function () {
+				self.generate();
+			})
 		});
 
 		this.ui.$passwordBox.on("keyup change", function() {
@@ -418,7 +422,7 @@ function CorrectHorseBatteryStaple() {
 
 
 		// Load the default words
-		this.loadData("english", function() {
+		this.loadData(this.options.language || this.defaults.language, function() {
 			self.generate();
 		});
 
