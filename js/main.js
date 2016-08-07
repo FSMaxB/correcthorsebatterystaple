@@ -241,11 +241,15 @@ function CorrectHorseBatteryStaple() {
 		return this.words;
 	};
 
+	this.calculateEntropy = function(words) {
+		return Math.floor(Math.log(Math.pow(this.data.length, words))/Math.log(2));
+	}
 
 	/**
 	 * Generate a password
 	 */
 	this.generate = function() {
+		$('#wordlist-size').text(this.data.length);
 
 		this.words = [];
 
@@ -254,6 +258,7 @@ function CorrectHorseBatteryStaple() {
 		this.fullPassword = this.getWords();
 
 		this.ui.$passwordBox.val(this.fullPassword).trigger("change");
+		$("#display-entropy").text(this.calculateEntropy(this.options.minWords));
 
 		return this.fullPassword;
 	};
