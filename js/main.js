@@ -48,7 +48,7 @@ function CorrectHorseBatteryStaple() {
 	// Default options
 	this.defaults = {
 		firstUpper:    true,
-		minWords:      3,
+		minWords:      4,
 		separator:     "-"
 	};
 
