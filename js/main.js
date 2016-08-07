@@ -19,8 +19,7 @@ function CorrectHorseBatteryStaple() {
 	 * @type {Object}
 	 */
 	this.config = {
-		storageKey:       "CHBSOptions",
-		randomNumberPool: 10
+		storageKey:       "CHBSOptions"
 	};
 
 	this.data = [];
@@ -51,7 +50,6 @@ function CorrectHorseBatteryStaple() {
 		minLength:     10,
 		firstUpper:    true,
 		minWords:      3,
-		appendNumbers: true,
 		separator:     "-"
 	};
 
@@ -305,11 +303,6 @@ function CorrectHorseBatteryStaple() {
 			symbol = "";
 
 		wordsLen = words.length;
-
-		if ( this.options.appendNumbers ) {
-			words.push(this.getUniformRandomInteger(0, this.config.randomNumberPool));
-			wordsLen = words.length;
-		}
 
 		for ( i = 0; i < wordsLen; i++ ) {
 
