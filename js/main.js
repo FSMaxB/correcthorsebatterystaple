@@ -19,8 +19,7 @@ function CorrectHorseBatteryStaple() {
 	 * @type {Object}
 	 */
 	this.config = {
-		storageKey:       "CHBSOptions",
-		randomNumberPool: 10
+		storageKey:       "CHBSOptions"
 	};
 
 	this.data = [];
@@ -48,11 +47,9 @@ function CorrectHorseBatteryStaple() {
 
 	// Default options
 	this.defaults = {
-		minLength:     10,
 		firstUpper:    true,
-		minWords:      3,
-		appendNumbers: true,
-		separator:     "-"
+		minWords:      4,
+		separator:     " "
 	};
 
 	/**
@@ -253,7 +250,6 @@ function CorrectHorseBatteryStaple() {
 		this.words = [];
 
 		this.options.minWords = parseInt(this.options.minWords, 10) || this.defaults.minWords;
-		this.options.minLength = parseInt(this.options.minLength, 10) || this.defaults.minLength;
 
 		this.fullPassword = this.getWords();
 
@@ -278,53 +274,10 @@ function CorrectHorseBatteryStaple() {
 		this.getRandomWords(numWords);
 
 		//generate a full string to test against min length
-		fullword = this.words.join(this.options.separator.substring(0, 1) || "");
+		fullword = this.words.join(this.options.separator);
 
-		//recurse untill our password is long enough;
-		if ( fullword.length < this.options.minLength ) {
-			return this.getWords(1);
-		}
-		else {
-			//once we have enough words
-			fullword = this.join(this.words, this.stringToArray(this.options.separator));
-			return fullword;
-		}
+		return fullword;
 	};
-
-	/**
-	 * Join a set of words with random separators
-	 *
-	 * @param   {Array}    words       Array of words
-	 * @param   {Array}    separators
-	 * @returns {string}
-	 */
-	this.join = function(words, separators) {
-		var wordsLen,
-			i,
-			theString = "",
-			symbol = "";
-
-		wordsLen = words.length;
-
-		if ( this.options.appendNumbers ) {
-			words.push(this.getUniformRandomInteger(0, this.config.randomNumberPool));
-			wordsLen = words.length;
-		}
-
-		for ( i = 0; i < wordsLen; i++ ) {
-
-			if ( i !== wordsLen - 1 ) {
-				symbol = this.getSeparator(separators);
-			}
-			else {
-				symbol = "";
-			}
-
-			theString += words[i] + symbol;
-		}
-		return theString;
-	};
-
 
 	/**
 	 * Convert a string to an array of characters
@@ -348,18 +301,6 @@ function CorrectHorseBatteryStaple() {
 		}
 		return chars;
 	};
-
-
-	/**
-	 * Get a random separator from the separators array
-	 *
-	 * @param    {Array}    seps
-	 * @returns    {String}
-	 */
-	this.getSeparator = function(seps) {
-		return seps[ this.getUniformRandomInteger(0, seps.length) ] || "";
-	};
-
 
 	/**
 	 * Bind all UI related events
