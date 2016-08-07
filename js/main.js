@@ -157,6 +157,9 @@ function CorrectHorseBatteryStaple() {
 
 			if (!self.wordlists[language]) {
 				self.wordlists[language] = content.toString().split("\n");
+				if (self.wordlists[language][self.wordlists[language].length - 1] === '') {
+					self.wordlists[language].pop();
+				}
 			}
 			self.data = self.wordlists[language]
 
